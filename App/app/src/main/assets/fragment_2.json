@@ -1,0 +1,6 @@
+{
+  "fragmentClass": "com.dsergio.androidevaluation.Fragment2",
+  "fragmentLayout": "fragment_2",
+  "fragmentAnimationEnter": "slide_in_left",
+  "fragmentAnimationExit": "slide_out_right"
+}

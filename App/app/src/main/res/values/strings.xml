@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">AndroidEvaluation</string>
+
+    <string name="about">About</string>
+
+    <string name="fragment1">Fragment 1</string>
+    <string name="fragment2">Fragment 2</string>
+    <string name="fragment3">Fragment 3</string>
+
+    <string name="fragmentButton1">Fragment Button 1</string>
+    <string name="fragmentButton2">Fragment Button 2</string>
+    <string name="fragmentButton3">Fragment Button 3</string>
+
 </resources>
