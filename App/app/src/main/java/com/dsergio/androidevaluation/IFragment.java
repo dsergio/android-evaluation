@@ -1,5 +1,9 @@
 package com.dsergio.androidevaluation;
 
+/**
+ * Fragment Interface
+ *
+ */
 public interface IFragment {
 
     String getCurrentFragmentFileName();

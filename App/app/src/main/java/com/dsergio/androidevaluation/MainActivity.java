@@ -18,11 +18,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+/**
+ * MainActivity Class
+ *
+ */
 public class MainActivity extends AppCompatActivity implements MyListener {
 
     public final String appName = "Android Evaluation";
@@ -66,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements MyListener {
         }
     }
 
+    @Override
     public void incrementCurrentFileNameIndex() {
         if (currentFragmentFileNameIndex < 3) {
             currentFragmentFileNameIndex++;
@@ -74,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements MyListener {
         }
         Log.d(appName, "currentFragmentFileNameIndex: " + currentFragmentFileNameIndex);
     }
+
+    @Override
     public void decrementCurrentFileNameIndex() {
         if (currentFragmentFileNameIndex > 1) {
             currentFragmentFileNameIndex--;
@@ -127,10 +135,13 @@ public class MainActivity extends AppCompatActivity implements MyListener {
 
     /**
      *
+     * Use this method to read the JSON config files to swap fragments
+     *
      * @param filename the filename of the json fragment configuration file
      * @return the JSONObject parsed from the file
      */
-    public JSONObject parseJson(String filename) {
+    @Override
+    public JSONObject parseJson(@NonNull String filename) {
         AssetManager assetManager = getResources().getAssets();
 
         String jsonStr;
@@ -170,9 +181,12 @@ public class MainActivity extends AppCompatActivity implements MyListener {
 
     /**
      *
+     * Parse the JSON config file and create the fragment with animations
+     *
      * @param fileName the json file with the fragment information
      */
-    public void swapFragment(String fileName) {
+    @Override
+    public void swapFragment(@NonNull String fileName) {
 
         JSONObject jsonObject = parseJson(fileName);
         String fragmentAnimationEnter = null;
@@ -187,17 +201,21 @@ public class MainActivity extends AppCompatActivity implements MyListener {
             e.printStackTrace();
         }
 
-        createFragment(fragmentClass, fragmentAnimationEnter, fragmentAnimationExit);
+        if (fragmentClass != null) {
+            createFragment(fragmentClass, fragmentAnimationEnter, fragmentAnimationExit);
+        }
 
     }
 
     /**
      *
+     * Create fragments with given fragment class using Java Reflection and replace the FrameLayout with the Fragment
+     *
      * @param fragmentClass the name of the fragment class
-     * @param fragmentAnimationEnter the name of the enter animator
-     * @param fragmentAnimationExit the name of the exit animator
+     * @param fragmentAnimationEnter the name of the enter animator. Can be null.
+     * @param fragmentAnimationExit the name of the exit animator. Can be null
      */
-    private void createFragment(String fragmentClass, String fragmentAnimationEnter, String fragmentAnimationExit) {
+    private void createFragment(@NonNull String fragmentClass, @Nullable String fragmentAnimationEnter, @Nullable String fragmentAnimationExit) {
 
         Fragment fragment;
         fragment = null;

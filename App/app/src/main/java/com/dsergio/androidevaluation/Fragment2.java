@@ -2,6 +2,9 @@ package com.dsergio.androidevaluation;
 
 import android.os.Bundle;
 
+/**
+ * Fragment class
+ */
 @SuppressWarnings("unused")
 public class Fragment2 extends FragmentBase {
 
@@ -14,8 +17,7 @@ public class Fragment2 extends FragmentBase {
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
+     * Singleton factory method
      *
      * @param param1 Parameter 1.
      * @return instance of fragment Fragment2.

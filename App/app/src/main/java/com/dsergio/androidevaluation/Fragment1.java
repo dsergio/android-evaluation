@@ -3,12 +3,9 @@ package com.dsergio.androidevaluation;
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.fragment.app.Fragment;
-
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link Fragment1#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragment class
+ *
  */
 @SuppressWarnings("unused")
 public class Fragment1 extends FragmentBase {
@@ -23,6 +20,7 @@ public class Fragment1 extends FragmentBase {
 
     /**
      *
+     * Singleton factory method
      *
      * @param param1 Parameter 1.
      * @return instance of fragment Fragment1.

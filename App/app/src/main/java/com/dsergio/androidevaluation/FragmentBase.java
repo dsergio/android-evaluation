@@ -14,6 +14,10 @@ import org.json.JSONObject;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+/**
+ * Base Fragment class
+ *
+ */
 public abstract class FragmentBase extends Fragment implements View.OnClickListener, IFragment {
 
     protected MyListener myListener;
@@ -60,7 +64,7 @@ public abstract class FragmentBase extends Fragment implements View.OnClickListe
         String fragmentLayoutId;
         try {
             fragmentLayoutId = jsonObject.getString("fragmentLayout");
-            
+
             String packageName = myListener.getPackageName();
 
             int resId = getResources().getIdentifier(fragmentLayoutId, "layout", packageName);
