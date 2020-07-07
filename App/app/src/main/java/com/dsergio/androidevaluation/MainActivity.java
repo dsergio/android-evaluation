@@ -23,7 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyListener {
 
     public final String appName = "Android Evaluation";
     private int currentFragmentFileNameIndex = 1;
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
      * @param filename the filename of the json fragment configuration file
      * @return the JSONObject parsed from the file
      */
-    JSONObject parseJson(String filename) {
+    public JSONObject parseJson(String filename) {
         AssetManager assetManager = getResources().getAssets();
 
         String jsonStr;

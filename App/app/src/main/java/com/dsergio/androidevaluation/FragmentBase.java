@@ -16,15 +16,17 @@ import androidx.fragment.app.Fragment;
 
 public abstract class FragmentBase extends Fragment implements View.OnClickListener, IFragment {
 
-    protected MainActivity activity;
+    protected MyListener myListener;
+
     protected String currentFragmentFileName;
     protected String nextFragmentFileName;
     protected String mParam1;
 
     @Override
     public void onClick(View view) {
-        activity.swapFragment(nextFragmentFileName);
-        activity.incrementCurrentFileNameIndex();
+        myListener.swapFragment(nextFragmentFileName);
+        myListener.incrementCurrentFileNameIndex();
+
     }
 
     @Override
@@ -38,9 +40,13 @@ public abstract class FragmentBase extends Fragment implements View.OnClickListe
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        if (context instanceof MainActivity) {
-            activity = (MainActivity) context;
+        try {
+            myListener = (MyListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement MyListener");
         }
+
+
         setNextFragmentFileName();
         setCurrentFragmentFileName();
     }
@@ -49,13 +55,14 @@ public abstract class FragmentBase extends Fragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        JSONObject jsonObject = activity.parseJson(currentFragmentFileName);
+        JSONObject jsonObject = myListener.parseJson(currentFragmentFileName);
 
         String fragmentLayoutId;
         try {
             fragmentLayoutId = jsonObject.getString("fragmentLayout");
+            
+            String packageName = myListener.getPackageName();
 
-            String packageName = activity.getPackageName();
             int resId = getResources().getIdentifier(fragmentLayoutId, "layout", packageName);
 
             View view = inflater.inflate(resId, container, false);
